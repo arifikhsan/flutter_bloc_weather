@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_weather/bloc/weather_bloc.dart';
 import 'package:flutter_bloc_weather/screen/city_selection_screen.dart';
+import 'package:flutter_bloc_weather/screen/settings_screen.dart';
 import 'package:flutter_bloc_weather/screen/widget/combined_weather_temperature_widget.dart';
 import 'package:flutter_bloc_weather/screen/widget/gradient_container_widget.dart';
 import 'package:flutter_bloc_weather/screen/widget/last_updated_widget.dart';
@@ -31,6 +32,17 @@ class _WeatherWidgetState extends State<WeatherWidget> {
         title: Text('Flutter Weather'),
         actions: <Widget>[
           IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsScreen(),
+                ),
+              );
+            },
+          ),
+          IconButton(
             icon: Icon(Icons.search),
             onPressed: () async {
               final city = await Navigator.push(
@@ -44,7 +56,8 @@ class _WeatherWidgetState extends State<WeatherWidget> {
                     .add(FetchWeather(city: city));
               }
             },
-          )
+          ),
+
         ],
       ),
       body: Center(

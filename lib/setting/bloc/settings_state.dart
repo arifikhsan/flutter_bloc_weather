@@ -1,10 +1,14 @@
 part of 'settings_bloc.dart';
 
-abstract class SettingsState extends Equatable {
-  const SettingsState();
-}
+enum TemperatureUnits { fahrenheit, celsius }
 
-class SettingsInitial extends SettingsState {
+class SettingsState extends Equatable {
+  final TemperatureUnits temperatureUnits;
+
+  const SettingsState({
+    @required this.temperatureUnits,
+  }) : assert(temperatureUnits != null);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [temperatureUnits];
 }
